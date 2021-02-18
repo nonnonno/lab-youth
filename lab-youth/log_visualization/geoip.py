@@ -42,8 +42,11 @@ for ip_add in range(len(ip_splited)):
   # 空の配列はスキップ
   if not len(ip_splited[ip_add])==2:
     ip_add+=1
-  lati_long.append(ip_to_lati_longi.ip_convert(ip_splited[ip_add][1]))
-  print("finish data process")
+  lati_long_pair=ip_to_lati_longi.ip_convert(ip_splited[ip_add][1])
+  # Noneと返ってくる緯度経度情報は無視
+  if lati_long_pair!='None':
+    lati_long.append(lati_long_pair)
+
   ip_add+=1
 print(lati_long)
 
