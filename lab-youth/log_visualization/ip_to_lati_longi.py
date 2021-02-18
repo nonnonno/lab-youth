@@ -2,7 +2,7 @@ from geolite2 import geolite2
 # import sys
 
 def ip_convert(ip):
-  print(ip)
+  # print(ip)
   geo_r = geolite2.reader()
   res = geo_r.get(ip)
   # pairは緯度経度のペアのリスト
@@ -20,8 +20,8 @@ def ip_convert(ip):
           pair.append(value2)
           if pair and len(pair)>=2:
             return pair
-  else:
-    return 0
+  # else:
+  #   return 
         
 
 if __name__ == '__main__':
