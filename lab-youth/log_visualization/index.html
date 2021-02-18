@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Infobox:Multipull</title>
+    <meta charset="utf-8">
+    <style>html,body{height:100%;}body{padding:0;margin:0;background:#333;}h1{padding:0;margin:0;font-size:50%;color:white;}</style>
+</head>
+<body>
+<h1>Infobox:Multipull (Click on pushpin)</h1>
+<div id="myMap" style='width:100%;height:98%;'></div>
+
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[BING_API_KEY]' async defer></script>
+<script>
+let infobox,map;
+function GetMap() {
+    //Map init
+    map = new Microsoft.Maps.Map('#myMap', {
+        center: new Microsoft.Maps.Location(47.6149, -122.1941),
+        zoom: 2
+    });
+    let center = map.getCenter();
+
+    //********************************************************************
+    //infobox
+    //********************************************************************
+    infobox = new Microsoft.Maps.Infobox(center, {
+        visible: false
+    });
+    infobox.setMap(map);//Add infobox to Map
+
+    //********************************************************************
+    //PushPin
+    //********************************************************************
+    //* Create test data *
+    let randomLocations = Microsoft.Maps.TestDataGenerator.getLocations(5, map.getBounds());
+    //* Create test data * Microsoft.Maps.TestDataGenerator.getLocations(Number of array, Display range)**
+
+    //Iterative processing
+    for (let i=0; i<randomLocations.length; i++) {
+        //pushpin: Set location
+        // let pin = new Microsoft.Maps.Pushpin(randomLocations[i]);
+        // ここで緯度経度を入力
+        var location = new Microsoft.Maps.Location(35.69406262352407, 139.72832623668495);
+        let pin = new Microsoft.Maps.Pushpin(location);
+        //PushuPin:Create display character for each
+        // console.log(i,randomLocations[i])
+        pin.metadata = {
+            title: 'Pin ' + i,
+            description: randomLocations[i] + i
+        };
+        //Pushpin:Add click event
+        Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+        map.entities.push(pin); // Add Pushpin to Map
+    }
+}
+
+//Pushpin click event
+function pushpinClicked(e) {
+    if (e.target.metadata) {
+        //Set information of clicked Pushpin
+        infobox.setOptions({
+            location: e.target.getLocation(),
+            title: e.target.metadata.title,
+            description: e.target.metadata.description,
+            visible: true
+        });
+    }
+}
+</script>
+</body>
+</html>
