@@ -8,10 +8,15 @@
 </head>
 
 <!-- <body> -->
-<h1>Infobox:Multipull (Click on pushpin)</h1>
+<!-- <h1>Infobox:Multipull (Click on pushpin)</h1> -->
+<script src="return_data.js"></script>
+<button type="button" value="0" onclick="OnButtonClick()">1/11~1/18</button>
+<button type="button" value="1" onclick="OnButtonClick()">1/18~1/25</button>
+
+
 <div id="myMap" style='width:100%;height:98%;'></div>
 
-<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[BINGKEY]]' async defer></script>
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[BINGMAP_KEY]' async defer></script>
 <script>
 let infobox,map;
 function GetMap() {
