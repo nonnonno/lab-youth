@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <style>html,body{height:100%;}body{padding:0;margin:0;background:#333;}h1{padding:0;margin:0;font-size:50%;color:white;}</style>
 </head>
-<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[BING_KEY]' async defer></script>
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[MAP_KEY]' async defer></script>
 
 <script>
 const HEADERS = {
@@ -17,10 +17,10 @@ var js = {}
 const onAdd = () => {
 //   const key = getValue('key')
 //   const value = getValue('value')
-  const key = "abc"
-  const value = "def" 
+  // const key = "abc"
+  // const value = "def" 
 //   console.log(`ADD key=${key}, value=${value}`)
-//   var js = {}
+  var js = {}
   // js[key] = value
   fetch(URL + 'get_pos', {
     method: 'POST',
@@ -33,7 +33,6 @@ const onAdd = () => {
     GetMap([js['pos'][0],js['pos'][1]]);//呼び出してピンに反映
   })
   .catch(err => console.error(err))
-  // GetMap([js['pos'][0],js['pos'][1]]);
 }
 
 let infobox,map;
@@ -61,23 +60,18 @@ function GetMap(lati_longi) {
     //* Create test data *
     // let randomLocations = Microsoft.Maps.TestDataGenerator.getLocations(5, map.getBounds());
     //* Create test data * Microsoft.Maps.TestDataGenerator.getLocations(Number of array, Display range)**
-    // let lati_longi1=[[55.7522, 37.6156], [41.0186, 28.9647], [13.7594, 100.4889],[36.3022, -82.4825], [42.0604, -91.5858], [42.0604, -91.5858], [44.9729, -93.2873], [32.5462, -110.952], [41.7248, -93.6017], [33.3062, -111.8413], [37.751, -97.822], [38.79, -90.8549], [41.4457, -82.1805], [45.0729, -92.0085], [43.182, -84.1315], [42.8864, -78.8781], [36.1979, -76.3511], [48.8582, 2.3387000000000002], [37.3387, -121.8914], [37.8449, -122.2376], [21.0333, 105.85], [39.9289, 116.3883], [36.175, -115.1372], [50.6942, 3.1746], [37.3387, -121.8914], [51.9303, 4.4597999999999995]]
-    // var lati_longi=js
-    console.log("lati_longi[0]is");
-    console.log(lati_longi[0]);
+    // let lati_longi=[[55.7522, 37.6156], [41.0186, 28.9647], [13.7594, 100.4889],[36.3022, -82.4825], [42.0604, -91.5858], [42.0604, -91.5858], [44.9729, -93.2873], [32.5462, -110.952], [41.7248, -93.6017], [33.3062, -111.8413], [37.751, -97.822], [38.79, -90.8549], [41.4457, -82.1805], [45.0729, -92.0085], [43.182, -84.1315], [42.8864, -78.8781], [36.1979, -76.3511], [48.8582, 2.3387000000000002], [37.3387, -121.8914], [37.8449, -122.2376], [21.0333, 105.85], [39.9289, 116.3883], [36.175, -115.1372], [50.6942, 3.1746], [37.3387, -121.8914], [51.9303, 4.4597999999999995]]
+
     //Iterative processing
     for (let i=0; i<2;i++) {
         //pushpin: Set location
         // let pin = new Microsoft.Maps.Pushpin(randomLocations[i]);
 
         // ここで緯度経度を入力;
-        // console.log(lati_longi1[i]);
-        // var location = new Microsoft.Maps.Location(lati_longi[i][0],lati_longi[i][1]);
         var location = new Microsoft.Maps.Location(lati_longi[i][0],lati_longi[i][1]);
         // var location = new Microsoft.Maps.Location(lati_longi1[i]);
         let pin = new Microsoft.Maps.Pushpin(location);
         //PushuPin:Create display character for each
-        // console.log(i,randomLocations[i])
         pin.metadata = {
             title: 'Pin ' + i,
             description: 'thisis' + i + lati_longi[i]
@@ -103,7 +97,15 @@ function pushpinClicked(e) {
 
 </script>
 <body>
-<button type="button" value="0" onclick="onAdd()">1/11~1/18</button> 
-<div id="myMap" style='width:100%;height:98%;'></div>
+  <button type="button" value="0" onclick="onAdd()">12/20~1/27</button>
+  <button type="button" value="1" onclick="onAdd()">12/28~1/3</button> 
+  <button type="button" value="2" onclick="onAdd()">1/4~1/10</button> 
+  <button type="button" value="3" onclick="onAdd()">1/11~1/17</button>
+  <button type="button" value="4" onclick="onAdd()">1/17~1/19</button> 
+  <div id="myMap" style='width:100%;height:98%;'></div> 
+  <!-- 以下のコメントがないとなぜか動かない -->
+<!-- <button type="button" value="2" onclick="onAdd()">1/4~1/10</button> 
+<button type="button" value="3" onclick="onAdd()">1/11~1/17</button> 
+<button type="button" value="4" onclick="onAdd()">1/17~1/19</button>  --> 
 </body>
 </html>
