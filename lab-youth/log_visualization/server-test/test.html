@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <style>html,body{height:100%;}body{padding:0;margin:0;background:#333;}h1{padding:0;margin:0;font-size:50%;color:white;}</style>
 </head>
-<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[MAP_KEY]' async defer></script>
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Ajux-YIdlgRSisiAddjaANnzKmYD71PdNb9KEHtGPkDgsA3cK4mmgXO0hbs62gM5' async defer></script>
 
 <script>
 const HEADERS = {
@@ -15,11 +15,6 @@ const HEADERS = {
 const URL = 'http://localhost:8000/'
 var js = {}
 const onAdd = () => {
-//   const key = getValue('key')
-//   const value = getValue('value')
-  // const key = "abc"
-  // const value = "def" 
-//   console.log(`ADD key=${key}, value=${value}`)
   var js = {}
   // js[key] = value
   fetch(URL + 'get_pos', {
@@ -74,7 +69,7 @@ function GetMap(lati_longi) {
         //PushuPin:Create display character for each
         pin.metadata = {
             title: 'Pin ' + i,
-            description: 'thisis' + i + lati_longi[i]
+            description: '緯度経度' +lati_longi[i]
         };
 
         Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);        
