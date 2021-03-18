@@ -24,17 +24,21 @@ const onAdd = () => {
   }).then(res => res.json())
   .then(js => {
     console.log("this is posdata")
-    console.log(js['pos'][0])
-    GetMap([js['pos'][0],js['pos'][1]]);//呼び出してピンに反映
+    console.log(js['pos'][4])
+    GetMap([js['pos']],[js['count']]);//呼び出してピンに反映
   })
   .catch(err => console.error(err))
 }
 
 let infobox,map;
-function GetMap(lati_longi) {
+function GetMap(lati_longi,count) {
     //Map init
-    console.log("test")
-    console.log(lati_longi)
+    console.log("lati_longi[0]")
+    console.log(lati_longi[0][2])
+    // console.log("lati_longi[1]")
+    // console.log(lati_longi[2][1])
+    console.log("count")
+    console.log(count)
     map = new Microsoft.Maps.Map('#myMap', {
         center: new Microsoft.Maps.Location(47.6149, 122.1941),
         zoom: 2
@@ -58,18 +62,25 @@ function GetMap(lati_longi) {
     // let lati_longi=[[55.7522, 37.6156], [41.0186, 28.9647], [13.7594, 100.4889],[36.3022, -82.4825], [42.0604, -91.5858], [42.0604, -91.5858], [44.9729, -93.2873], [32.5462, -110.952], [41.7248, -93.6017], [33.3062, -111.8413], [37.751, -97.822], [38.79, -90.8549], [41.4457, -82.1805], [45.0729, -92.0085], [43.182, -84.1315], [42.8864, -78.8781], [36.1979, -76.3511], [48.8582, 2.3387000000000002], [37.3387, -121.8914], [37.8449, -122.2376], [21.0333, 105.85], [39.9289, 116.3883], [36.175, -115.1372], [50.6942, 3.1746], [37.3387, -121.8914], [51.9303, 4.4597999999999995]]
 
     //Iterative processing
-    for (let i=0; i<2;i++) {
+    lati_longi_cnt=lati_longi[0].length
+    for (let i=0; i<lati_longi_cnt;i++) {
         //pushpin: Set location
         // let pin = new Microsoft.Maps.Pushpin(randomLocations[i]);
 
         // ここで緯度経度を入力;
-        var location = new Microsoft.Maps.Location(lati_longi[i][0],lati_longi[i][1]);
+        console.log("lati_longi.length");
+        console.log(lati_longi_cnt);
+        console.log(lati_longi[0][i]);
+        console.log(lati_longi[0][i][0]);
+        console.log(lati_longi[0][i][1]);
+
+        var location = new Microsoft.Maps.Location(lati_longi[0][i][0],lati_longi[0][i][1]);
         // var location = new Microsoft.Maps.Location(lati_longi1[i]);
         let pin = new Microsoft.Maps.Pushpin(location);
         //PushuPin:Create display character for each
         pin.metadata = {
             title: 'Pin ' + i,
-            description: '緯度経度' +lati_longi[i]
+            description: '緯度経度' +lati_longi[0][i]
         };
 
         Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);        
