@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <style>html,body{height:100%;}body{padding:0;margin:0;background:#333;}h1{padding:0;margin:0;font-size:50%;color:white;}</style>
 </head>
-<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[API_KEY]' async defer></script>
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Ajux-YIdlgRSisiAddjaANnzKmYD71PdNb9KEHtGPkDgsA3cK4mmgXO0hbs62gM5' async defer></script>
 
 <script>
 const HEADERS = {
@@ -25,8 +25,6 @@ const onAdd = (d) => {
     body: JSON.stringify(js)
   }).then(res => res.json())
   .then(js => {
-    console.log("this is posdata")
-    console.log(js['pos'][4])
     GetMap([js['pos']],[js['count']]);//呼び出してピンに反映
   })
   .catch(err => console.error(err))
@@ -56,10 +54,14 @@ function GetMap(lati_longi,count) {
     //PushPin
     //********************************************************************
     //* Create test data *
-    // let randomLocations = Microsoft.Maps.TestDataGenerator.getLocations(5, map.getBounds());
     //* Create test data * Microsoft.Maps.TestDataGenerator.getLocations(Number of array, Display range)**
 
     lati_longi_cnt=lati_longi[0].length
+    console.log("latilongi_length")
+    console.log(lati_longi_cnt)
+    console.log("cnt_length")
+    console.log(count[0].length)
+    console.log(count[0][19])
     for (let i=0; i<lati_longi_cnt;i++) {
         //pushpin: Set location
 
@@ -68,7 +70,7 @@ function GetMap(lati_longi,count) {
         //PushuPin:Create display character for each
         pin.metadata = {
             title: 'Pin ' + i,
-            description: '緯度経度[' +lati_longi[0][i]+']'
+            description: '緯度経度[' + lati_longi[0][i] + ']' + '回数' + count[0][i]
         };
 
         Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);        
@@ -95,11 +97,9 @@ function pushpinClicked(e) {
   <button type="button" value="1" onclick="onAdd(1)">12/28~1/3</button> 
   <button type="button" value="2" onclick="onAdd(2)">1/4~1/10</button> 
   <button type="button" value="3" onclick="onAdd(3)">1/11~1/17</button>
-  <button type="button" value="4" onclick="onAdd(4)">1/17~1/19</button> 
+  <button type="button" value="4" onclick="onAdd(4)">1/18~1/19</button> 
   <div id="myMap" style='width:100%;height:98%;'></div> 
-  <!-- 以下のコメントがないとなぜか動かない -->
-<!-- <button type="button" value="2" onclick="onAdd()">1/4~1/10</button> 
-<button type="button" value="3" onclick="onAdd()">1/11~1/17</button> 
-<button type="button" value="4" onclick="onAdd()">1/17~1/19</button>  --> 
+ 
+<!-- -->
 </body>
 </html>
