@@ -1,7 +1,7 @@
 # lab-youth
  This is a tool for visualising security log.
 
-## simpleserver.py
+## server-test/simpleserver.py
 
 ```
 python simpleserver.py
@@ -18,3 +18,11 @@ ip.sh extracts the number of accesses from same ip-addresses and omit duplicates
 
 ## ip_to_lati_longi.py
 This just changes ip addresses into latitude and longitude.
+
+## securelog/ip.sh
+
+```
+"usage: ./ip.sh [FILENAME]"
+```
+Using ip.sh, you can extract IP addresses, remove the null data and count the number of accesses from one IP from securelog.  
+ip.sh makes ip_[FILENAME].txt, ip_[FILENAME]_nullremoved.txt and ip_[FILENAME]_sorted.txt in the same directory.
