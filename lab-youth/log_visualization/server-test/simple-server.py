@@ -36,16 +36,16 @@ def returnFile(self, path):
 	contentType = getContentType(path.suffix)
 	print('returnFile name=%s contentType=%s' % (path.name, contentType))
 	try:
-		with open(path.name, mode='r', encoding='utf-8') as f:
+		with open(path.name, mode='rb') as f:
 			text = f.read()
 	except:
-		text = 'open err'
+		text = b'open err'
 
 	self.send_response(200)
 	self.send_header('Content-type', '%s; charset=utf-8' % contentType)
 	self.send_header('Content-Length', str(len(text)))
 	self.end_headers()
-	self.wfile.write(text.encode('utf-8'))
+	self.wfile.write(text)
 
 def returnJson(self, res):
 	self.send_response(200)
