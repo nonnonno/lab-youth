@@ -22,7 +22,14 @@ This just changes ip addresses into latitude and longitude.
 ## securelog/ip.sh
 
 ```
-"usage: ./ip.sh [FILENAME]"
+"usage: ./ip.sh [SECURELOG_FILENAME]"
 ```
 Using ip.sh, you can extract IP addresses, remove the null data and count the number of accesses from one IP from securelog.  
-ip.sh makes ip_[FILENAME].txt, ip_[FILENAME]_nullremoved.txt and ip_[FILENAME]_sorted.txt in the same directory.
+ip.sh makes ip_[SECURELOG_FILENAME].txt, ip_[SECURELOG_FILENAME]_nullremoved.txt and ip_[SECURELOG_FILENAME]_sorted.txt in the same directory.
+
+## securelog/username.sh
+
+```
+"usage: ./username.sh [SECURELOG_FILENAME]"
+```
+Using username.sh, you can extract the usernames and count how many times the username was used.
